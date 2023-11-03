@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingDefaultResource">
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/menu_home"
+            android:icon="@drawable/icon_home"
+            android:title="Home"
+            />
+        <item
+            android:id="@+id/menu_saved"
+            android:icon="@drawable/icon_saved"
+            android:title="Saved Books"
+            />
+
+        <item
+            android:id="@+id/menu_profile"
+            android:icon="@drawable/icon_profile"
+            android:title="Profile" />
+        <item
+            android:id="@+id/menu_logout"
+            android:icon="@drawable/logout_icon"
+            android:title="Logout"/>
+    </group>
+</menu>
