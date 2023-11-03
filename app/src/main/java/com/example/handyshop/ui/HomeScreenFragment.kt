@@ -204,7 +204,7 @@ class HomeScreenFragment : Fragment() {
                 val adapter =
                     BookAdapter(response.body()!!.toMutableList(), object : BookAdapter.ItemClick {
                         override fun OnItemClick(book: Book) {
-                            Log.d("BOOOK", "${book.name}")
+                            Log.d("BOOOK", book.name)
                             val bundle = bundleOf("book" to book)
                             findNavController().navigate(R.id.bookInfoFragment,bundle)
                         }
