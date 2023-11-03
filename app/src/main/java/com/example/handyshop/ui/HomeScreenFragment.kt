@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.core.os.bundleOf
 import androidx.core.view.GravityCompat
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -60,7 +61,10 @@ class HomeScreenFragment : Fragment() {
                 binding.homeMainBookText.setText(response.body()!!.author + "ning " + response.body()!!.name + " asari")
                 binding.homeMainBookImage.load(response.body()!!.image)
                 binding.homeMainBookReadNowMb.setOnClickListener {
-                    findNavController().navigate(R.id.action_homeScreenFragment_to_bookInfoFragment)
+
+                    val bundle = bundleOf("mainBook" to response.body())
+
+                    findNavController().navigate(R.id.action_homeScreenFragment_to_bookInfoFragment,bundle)
                 }
             }
 
@@ -99,7 +103,8 @@ class HomeScreenFragment : Fragment() {
                                                     response.body()!!.toMutableList(),
                                                     object : BookAdapter.ItemClick {
                                                         override fun OnItemClick(book: Book) {
-                                                            findNavController().navigate(R.id.action_homeScreenFragment_to_bookInfoFragment)
+                                                            val bundle = bundleOf("book" to book)
+                                                            findNavController().navigate(R.id.action_homeScreenFragment_to_bookInfoFragment, bundle)
                                                         }
                                                     }, object : BookAdapter.OnSelected {
                                                         override fun onSelected(book: Book) {
@@ -137,7 +142,9 @@ class HomeScreenFragment : Fragment() {
                                                             response.body()!!.toMutableList(),
                                                             object : BookAdapter.ItemClick {
                                                                 override fun OnItemClick(book: Book) {
-                                                                    findNavController().navigate(R.id.action_homeScreenFragment_to_bookInfoFragment)
+                                                                    val bundle = bundleOf("book" to book)
+                                                                    findNavController().navigate(R.id.action_homeScreenFragment_to_bookInfoFragment,
+                                                                        bundle)
                                                                 }
 
                                                             }, object : BookAdapter.OnSelected {
@@ -197,7 +204,9 @@ class HomeScreenFragment : Fragment() {
                 val adapter =
                     BookAdapter(response.body()!!.toMutableList(), object : BookAdapter.ItemClick {
                         override fun OnItemClick(book: Book) {
-                            findNavController().navigate(R.id.action_homeScreenFragment_to_bookInfoFragment)
+                            Log.d("BOOOK", "${book.name}")
+                            val bundle = bundleOf("book" to book)
+                            findNavController().navigate(R.id.bookInfoFragment,bundle)
                         }
 
                     }, object : BookAdapter.OnSelected {
@@ -244,7 +253,8 @@ class HomeScreenFragment : Fragment() {
                                     response.body()!!.toMutableList(),
                                     object : BookAdapter.ItemClick {
                                         override fun OnItemClick(book: Book) {
-                                            findNavController().navigate(R.id.action_homeScreenFragment_to_bookInfoFragment)
+                                            val bundle = bundleOf("book" to book)
+                                            findNavController().navigate(R.id.action_homeScreenFragment_to_bookInfoFragment,bundle)
 
                                         }
 
