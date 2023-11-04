@@ -13,6 +13,7 @@ import com.example.handyshop.api.APIClient
 import com.example.handyshop.api.APIService
 import com.example.handyshop.data.CommentData
 import com.example.handyshop.data.CommentDataOrigin
+import com.example.handyshop.data.User
 import com.example.handyshop.databinding.FragmentNewCommentBinding
 import com.example.handyshop.preference.SharedPreference
 import okhttp3.internal.notifyAll
@@ -40,23 +41,20 @@ class NewCommentFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         binding = FragmentNewCommentBinding.inflate(layoutInflater)
 
-        var api = APIClient.getInstance().create(APIService::class.java)
         val shared = SharedPreference.newInstance(requireContext())
         val user = shared.getLoginData()
+        val api = APIClient.getInstance().create(APIService::class.java)
 
         binding.jonatish.setOnClickListener {
-            Log.d("AASD", arguments?.getInt("newComment_id").toString())
-            if (arguments?.containsKey("newComment_id") == true) {
-
                 var commentData = CommentDataOrigin(
                     book_id = requireArguments().getInt("newComment_id"),
                     reyting = binding.ratingBar.rating.toInt(),
                     text = binding.commentsss.text.toString(),
-                    user_id = user[0].id
+                    user_id = 0
                 )
 
 
@@ -76,12 +74,9 @@ class NewCommentFragment : Fragment() {
 
                 })
             }
-        }
 
 
-
-
-        return inflater.inflate(R.layout.fragment_new_comment, container, false)
+        return binding.root
     }
 
     companion object {

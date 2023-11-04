@@ -24,10 +24,10 @@ class SharedPreference private constructor(context: Context){
     fun setLoginData(mutableList: MutableList<UserToken>){
         edit.putString("Login", gson.toJson(mutableList)).apply()
     }
-    fun getLoginData(): MutableList<UserToken>{
+    fun getLoginData(): List<UserToken>{
         val data: String = sharedPreferences.getString("Login", "")!!
         if (data == ""){
-            return mutableListOf()
+            return listOf()
         }
         val typeToken = object : TypeToken<MutableList<UserToken>>(){}.type
         return gson.fromJson(data, typeToken)
