@@ -52,13 +52,20 @@ class BookInfoFragment : Fragment() {
         mySharedPreferences = SharedPreference.newInstance(requireContext())
         selectedBooks = mySharedPreferences.GetSelectedBooks()
 
+
         val api = APIClient.getInstance().create(APIService::class.java)
         if (arguments?.containsKey("book") == true) {
             api.getBook(arguments?.getInt("book")!!).enqueue(object : Callback<Book> {
                 override fun onResponse(call: Call<Book>, response: Response<Book>) {
                     if (response.isSuccessful && response.body() != null)
+                        binding.commentBtn.setOnClickListener {
 
-                        binding.appCompatImageView.load(response.body()!!.image)
+                            val bundle = bundleOf("comment_id" to response.body()?.id)
+
+                            findNavController().navigate(R.id.commentFragment, bundle)
+
+                        }
+                    binding.appCompatImageView.load(response.body()!!.image)
                     binding.textView5.text = response.body()!!.name
                     binding.description.text = response.body()!!.description
 
@@ -110,7 +117,10 @@ class BookInfoFragment : Fragment() {
 
         binding.pdfViewBtn.setOnClickListener {
 
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://handybook.uz/frontend/web/file/701697625957.pdf") )
+            val intent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("http://handybook.uz/frontend/web/file/701697625957.pdf")
+            )
             startActivity(intent)
         }
 

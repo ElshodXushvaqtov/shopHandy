@@ -21,8 +21,8 @@ class UserBookListAdapter(var context: Context): RecyclerView.Adapter<UserBookLi
         var rating = view.findViewById<TextView>(R.id.rating_custom)
     }
 
-    val mySharedPreferences = SharedPreference.newInstance(context)
-    var selectedBooks = mySharedPreferences.GetSelectedBooks()
+    private val mySharedPreferences = SharedPreference.newInstance(context)
+    private var selectedBooks = mySharedPreferences.GetSelectedBooks()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.saved_book_item, parent, false))
     }

@@ -97,4 +97,9 @@
         android:name="com.example.handyshop.ui.MediaFragment"
         android:label="fragment_media"
         tools:layout="@layout/fragment_media" />
+    <fragment
+        android:id="@+id/newCommentFragment"
+        android:name="com.example.handyshop.ui.NewCommentFragment"
+        android:label="fragment_new_comment"
+        tools:layout="@layout/fragment_new_comment" />
 </navigation>

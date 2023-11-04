@@ -36,7 +36,7 @@ class HomeScreenFragment : Fragment() {
     lateinit var mySharedPreferences: SharedPreference
     lateinit var currentcategory: String
     lateinit var binding: FragmentHomeScreenBinding
-    lateinit var books: MutableList<Book>
+    lateinit var books: List<Book>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +53,7 @@ class HomeScreenFragment : Fragment() {
         binding = FragmentHomeScreenBinding.inflate(layoutInflater)
         mySharedPreferences = SharedPreference.newInstance(requireContext())
         selectedBooks = mySharedPreferences.GetSelectedBooks()
-        books = mutableListOf()
+        books = listOf()
         val api = APIClient.getInstance().create(APIService::class.java)
         val categories = mutableListOf<CategoryData>()
         currentcategory = ""
@@ -110,9 +110,9 @@ class HomeScreenFragment : Fragment() {
                                                 response: Response<List<Book>>
                                             ) {
                                                 binding.booksRv.visibility = View.VISIBLE
-                                                books = response.body()!!.toMutableList()
+                                                books = response.body()!!
                                                 binding.booksRv.adapter = BookAdapter(
-                                                    response.body()!!.toMutableList(),
+                                                    response.body()!!,
                                                     object : BookAdapter.ItemClick {
                                                         override fun OnItemClick(id: Int) {
                                                             Log.d(
@@ -158,7 +158,7 @@ class HomeScreenFragment : Fragment() {
                                                         binding.booksRv.visibility = View.VISIBLE
 
                                                         binding.booksRv.adapter = BookAdapter(
-                                                            response.body()!!.toMutableList(),
+                                                            response.body()!!,
                                                             object : BookAdapter.ItemClick {
                                                                 override fun OnItemClick(id: Int) {
                                                                     val bundle =
@@ -218,7 +218,7 @@ class HomeScreenFragment : Fragment() {
                 response: Response<List<Book>>
             ) {
 
-                books = response.body()!!.toMutableList()
+                books = response.body()!!
                 var layoutManager =
                     GridLayoutManager(requireContext(), 2, LinearLayoutManager.VERTICAL, false)
 

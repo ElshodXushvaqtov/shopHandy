@@ -12,11 +12,11 @@ import com.google.android.material.card.MaterialCardView
 
 
 class CategoryAdapter(
-    var array: MutableList<CategoryData>,
+    private var array: List<CategoryData>,
     var context: Context,
-    var listener: ItemClick
+    private var listener: ItemClick
 ) : RecyclerView.Adapter<CategoryAdapter.MyHolder>() {
-    var current = 0
+    private var current = 0
 
     class MyHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 

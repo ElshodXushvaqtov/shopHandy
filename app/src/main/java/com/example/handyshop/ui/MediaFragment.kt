@@ -60,13 +60,14 @@ class MediaFragment : Fragment() {
                     binding.name.text = response.body()?.name
                     binding.author.text = response.body()?.author
                     binding.rating.text = response.body()?.reyting.toString()
+
                     val mp = MediaPlayer.create(
                         requireContext(),
-                        Uri.parse(response.body()!!.audio.toString())
+                        Uri.parse(response.body()?.audio)
                     )
                     binding.seekbar.progress = 0
+
                     binding.seekbar.max = mp.duration
-                    Log.d("MED", "onResponse: ${mp.duration}")
                     binding.play.setOnClickListener {
                         if (!mp.isPlaying) {
                             mp.start()

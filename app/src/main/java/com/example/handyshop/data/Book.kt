@@ -3,7 +3,7 @@ package com.example.handyshop.data
 import java.io.Serializable
 
 data class Book(
-    val audio: Any,
+    val audio: String,
     val author: String,
     val count_page: Int,
     val description: String,
