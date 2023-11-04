@@ -5,4 +5,4 @@ data class User(
     var fullname: String,
     var email: String,
     val password: String
-)
+):java.io.Serializable

@@ -86,5 +86,5 @@
         android:id="@+id/userProfilFragment"
         android:name="com.example.handyshop.ui.UserProfilFragment"
         android:label="fragment_uset_profil"
-        tools:layout="@layout/fragment_uset_profil" />
+        tools:layout="@layout/fragment_user_profil" />
 </navigation>

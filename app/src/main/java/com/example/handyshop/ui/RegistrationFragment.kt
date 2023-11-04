@@ -81,7 +81,9 @@ class RegistrationFragment : Fragment() {
                     override fun onResponse(call: Call<UserToken>, response: Response<UserToken>) {
                         val bundle = bundleOf("registeredUser" to user)
                         Handler(Looper.getMainLooper()).postDelayed({
+                            myDialog.dismiss()
                             findNavController().navigate(
+
                                 R.id.action_registrationFragment_to_homeScreenFragment,
                                 bundle
                             )
@@ -92,6 +94,7 @@ class RegistrationFragment : Fragment() {
                         Log.d("AAA", "onFailure:$t ")
                     }
                 })
+
             }
 
         }

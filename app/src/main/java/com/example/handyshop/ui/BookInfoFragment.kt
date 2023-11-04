@@ -1,12 +1,14 @@
 package com.example.handyshop.ui
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,7 +23,7 @@ import farrukh.remotely.adapter.BookAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.math.log
+import java.net.URI
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -81,7 +83,7 @@ class BookInfoFragment : Fragment() {
 
                             val bundle = bundleOf("book" to id)
 
-                            findNavController().navigate(R.id.homeScreenFragment, bundle)
+                            findNavController().navigate(R.id.bookInfoFragment, bundle)
 
                         }
 
@@ -105,6 +107,12 @@ class BookInfoFragment : Fragment() {
             }
 
         })
+
+        binding.pdfViewBtn.setOnClickListener {
+
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://handybook.uz/frontend/web/file/701697625957.pdf") )
+            startActivity(intent)
+        }
 
         return binding.root
     }

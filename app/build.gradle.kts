@@ -41,7 +41,7 @@ android {
 
 dependencies {
     implementation ("de.hdodenhof:circleimageview:3.1.0")
-    implementation("com.airbnb.android:lottie:6.1.0")
+    implementation("com.airbnb.android:lottie:3.4.0")
     implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.22")
     implementation("io.coil-kt:coil:2.4.0")
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
