@@ -60,7 +60,7 @@ class BookAdapter(
         }
 
         holder.layout.setOnClickListener {
-            listener.OnItemClick(item)
+            listener.OnItemClick(item.id)
         }
 
         holder.bookmarkIV.setOnClickListener {
@@ -79,11 +79,11 @@ class BookAdapter(
     }
 
     interface ItemClick {
-        fun OnItemClick(book: Book)
+        fun OnItemClick(id:Int)
     }
 
     interface OnSelected {
-        fun onSelected(book: Book)
+        fun onSelected(book:Book)
     }
 
 }

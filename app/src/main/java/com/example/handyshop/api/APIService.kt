@@ -21,6 +21,9 @@ interface APIService {
     @POST("/book-api/login")
     fun login(@Body login: Login): Call<UserToken>
 
+    @GET("/book-api/view")
+    fun getBook(@Query("id") id: Int): Call<Book>
+
     @POST("/book-api/register")
     fun register(@Body user: User): Call<UserToken>
 

@@ -36,6 +36,7 @@ class HomeScreenFragment : Fragment() {
     lateinit var mySharedPreferences: SharedPreference
     lateinit var currentcategory: String
     lateinit var binding: FragmentHomeScreenBinding
+    lateinit var books: MutableList<Book>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -51,7 +52,7 @@ class HomeScreenFragment : Fragment() {
         binding = FragmentHomeScreenBinding.inflate(layoutInflater)
         mySharedPreferences = SharedPreference.newInstance(requireContext())
         selectedBooks = mySharedPreferences.GetSelectedBooks()
-        var books = mutableListOf<Book>()
+        books = mutableListOf()
         val api = APIClient.getInstance().create(APIService::class.java)
         val categories = mutableListOf<CategoryData>()
         currentcategory = ""
@@ -64,12 +65,15 @@ class HomeScreenFragment : Fragment() {
 
                     val bundle = bundleOf("mainBook" to response.body())
 
-                    findNavController().navigate(R.id.action_homeScreenFragment_to_bookInfoFragment,bundle)
+                    findNavController().navigate(
+                        R.id.action_homeScreenFragment_to_bookInfoFragment,
+                        bundle
+                    )
                 }
             }
 
             override fun onFailure(call: Call<Book>, t: Throwable) {
-                TODO("Not yet implemented")
+                Log.d("BSB", "onFailure: $t")
             }
 
         })
@@ -102,9 +106,12 @@ class HomeScreenFragment : Fragment() {
                                                 binding.booksRv.adapter = BookAdapter(
                                                     response.body()!!.toMutableList(),
                                                     object : BookAdapter.ItemClick {
-                                                        override fun OnItemClick(book: Book) {
-                                                            val bundle = bundleOf("book" to book)
-                                                            findNavController().navigate(R.id.action_homeScreenFragment_to_bookInfoFragment, bundle)
+                                                        override fun OnItemClick(id:Int) {
+                                                            val bundle = bundleOf("book" to id)
+                                                            findNavController().navigate(
+                                                                R.id.action_homeScreenFragment_to_bookInfoFragment,
+                                                                bundle
+                                                            )
                                                         }
                                                     }, object : BookAdapter.OnSelected {
                                                         override fun onSelected(book: Book) {
@@ -141,10 +148,13 @@ class HomeScreenFragment : Fragment() {
                                                         binding.booksRv.adapter = BookAdapter(
                                                             response.body()!!.toMutableList(),
                                                             object : BookAdapter.ItemClick {
-                                                                override fun OnItemClick(book: Book) {
-                                                                    val bundle = bundleOf("book" to book)
-                                                                    findNavController().navigate(R.id.action_homeScreenFragment_to_bookInfoFragment,
-                                                                        bundle)
+                                                                override fun OnItemClick(id: Int) {
+                                                                    val bundle =
+                                                                        bundleOf("book" to id)
+                                                                    findNavController().navigate(
+                                                                        R.id.action_homeScreenFragment_to_bookInfoFragment,
+                                                                        bundle
+                                                                    )
                                                                 }
 
                                                             }, object : BookAdapter.OnSelected {
@@ -203,10 +213,10 @@ class HomeScreenFragment : Fragment() {
 
                 val adapter =
                     BookAdapter(response.body()!!.toMutableList(), object : BookAdapter.ItemClick {
-                        override fun OnItemClick(book: Book) {
-                            Log.d("BOOOK", book.name)
-                            val bundle = bundleOf("book" to book)
-                            findNavController().navigate(R.id.bookInfoFragment,bundle)
+                        override fun OnItemClick(id:Int) {
+                            val bundle = bundleOf("book" to id)
+                            Log.d("BOOOK", id.toString())
+                            findNavController().navigate(R.id.bookInfoFragment, bundle)
                         }
 
                     }, object : BookAdapter.OnSelected {
@@ -252,9 +262,12 @@ class HomeScreenFragment : Fragment() {
                                 binding.booksRv.adapter = BookAdapter(
                                     response.body()!!.toMutableList(),
                                     object : BookAdapter.ItemClick {
-                                        override fun OnItemClick(book: Book) {
-                                            val bundle = bundleOf("book" to book)
-                                            findNavController().navigate(R.id.action_homeScreenFragment_to_bookInfoFragment,bundle)
+                                        override fun OnItemClick(id: Int) {
+                                            val bundle = bundleOf("book" to id)
+                                            findNavController().navigate(
+                                                R.id.action_homeScreenFragment_to_bookInfoFragment,
+                                                bundle
+                                            )
 
                                         }
 

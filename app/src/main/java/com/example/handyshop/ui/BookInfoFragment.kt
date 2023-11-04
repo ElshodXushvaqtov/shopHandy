@@ -21,6 +21,7 @@ import farrukh.remotely.adapter.BookAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.math.log
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -51,10 +52,20 @@ class BookInfoFragment : Fragment() {
 
         val api = APIClient.getInstance().create(APIService::class.java)
         if (arguments?.containsKey("book") == true) {
-            val book = arguments?.getSerializable("book") as Book
-            binding.appCompatImageView.load(book.image)
-            binding.textView5.text = book.name
-            binding.description.text = book.description
+            api.getBook(arguments?.getInt("book")!!).enqueue(object : Callback<Book> {
+                override fun onResponse(call: Call<Book>, response: Response<Book>) {
+                    if (response.isSuccessful && response.body() != null)
+
+                        binding.appCompatImageView.load(response.body()!!.image)
+                    binding.textView5.text = response.body()!!.name
+                    binding.description.text = response.body()!!.description
+
+                }
+
+                override fun onFailure(call: Call<Book>, t: Throwable) {
+                    Log.d("INFO_ERROR", "onFailure: $t")
+                }
+            })
         }
         api.getAllBooks().enqueue(object : Callback<List<Book>> {
             override fun onResponse(call: Call<List<Book>>, response: Response<List<Book>>) {
@@ -66,9 +77,9 @@ class BookInfoFragment : Fragment() {
 
                 val adapter =
                     BookAdapter(response.body()!!.toMutableList(), object : BookAdapter.ItemClick {
-                        override fun OnItemClick(book: Book) {
+                        override fun OnItemClick(id: Int) {
 
-                            val bundle = bundleOf("book" to book)
+                            val bundle = bundleOf("book" to id)
 
                             findNavController().navigate(R.id.homeScreenFragment, bundle)
 
