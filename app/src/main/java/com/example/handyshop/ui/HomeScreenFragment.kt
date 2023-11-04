@@ -59,8 +59,8 @@ class HomeScreenFragment : Fragment() {
         currentcategory = ""
 
         binding.imageView2.setOnClickListener {
-
-            findNavController().navigate(R.id.userProfilFragment)
+            var bundle = bundleOf("profile" to arguments?.getString("user"))
+            findNavController().navigate(R.id.userProfilFragment, bundle)
 
         }
 

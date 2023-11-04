@@ -50,6 +50,8 @@ class UserProfilFragment : Fragment() {
         finishedBooks = mySharedPreferences.getFinishedBook()
         selectedBooks = mySharedPreferences.GetSelectedBooks()
 
+        binding.profilePersonName.text = arguments?.getString("profile").toString()
+
         binding.profileSaqlanganKitoblarRecycler.adapter =
             SavedAdapter(requireContext(), object : SavedAdapter.OnClicked {
                 override fun onClicked(id: Int) {

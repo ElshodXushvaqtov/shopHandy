@@ -123,7 +123,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:orientation="horizontal"
-                android:weightSum="2"
+                android:weightSum="3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tavsiyalar">
@@ -140,7 +140,14 @@
                     android:textColor="@color/back_blue"
                     tools:layout_editor_absoluteX="91dp"
                     tools:layout_editor_absoluteY="621dp" />
-
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/audio_btn"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/light_blue"
+                    android:text="E-bookni tinglang"
+                    android:textColor="@color/back_blue" />
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/pdf_view_btn"
                     android:layout_width="0dp"

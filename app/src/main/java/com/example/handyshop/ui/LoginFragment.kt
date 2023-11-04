@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.handyshop.R
@@ -48,7 +49,8 @@ class LoginFragment : Fragment() {
 
             api.login(login).enqueue(object : Callback<UserToken> {
                 override fun onResponse(call: Call<UserToken>, response: Response<UserToken>) {
-                    findNavController().navigate(R.id.action_loginFragment_to_homeScreenFragment)
+                    val bundle = bundleOf("user" to response.body()!!.username)
+                    findNavController().navigate(R.id.action_loginFragment_to_homeScreenFragment,bundle)
                 }
 
                 override fun onFailure(call: Call<UserToken>, t: Throwable) {

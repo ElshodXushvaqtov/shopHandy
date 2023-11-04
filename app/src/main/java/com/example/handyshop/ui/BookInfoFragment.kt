@@ -65,6 +65,15 @@ class BookInfoFragment : Fragment() {
                             findNavController().navigate(R.id.commentFragment, bundle)
 
                         }
+
+                    binding.audioBtn.setOnClickListener {
+
+                        val bundle = bundleOf("book" to response.body()?.id)
+
+                        findNavController().navigate(R.id.mediaFragment, bundle)
+
+
+                    }
                     binding.appCompatImageView.load(response.body()!!.image)
                     binding.textView5.text = response.body()!!.name
                     binding.description.text = response.body()!!.description
