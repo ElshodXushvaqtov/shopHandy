@@ -15,7 +15,7 @@ import com.example.handyshop.R
 import com.example.handyshop.data.Book
 
 class BookAdapter(
-    var array: MutableList<Book>,
+    var array: List<Book>,
     var listener: ItemClick, var onSelected: OnSelected
 ) : RecyclerView.Adapter<BookAdapter.MyHolder>() {
     class MyHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

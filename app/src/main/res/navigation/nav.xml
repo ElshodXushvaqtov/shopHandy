@@ -87,4 +87,14 @@
         android:name="com.example.handyshop.ui.UserProfilFragment"
         android:label="fragment_uset_profil"
         tools:layout="@layout/fragment_user_profil" />
+    <fragment
+        android:id="@+id/commentFragment"
+        android:name="com.example.handyshop.ui.CommentFragment"
+        android:label="fragment_comment"
+        tools:layout="@layout/fragment_comment" />
+    <fragment
+        android:id="@+id/mediaFragment"
+        android:name="com.example.handyshop.ui.MediaFragment"
+        android:label="fragment_media"
+        tools:layout="@layout/fragment_media" />
 </navigation>
